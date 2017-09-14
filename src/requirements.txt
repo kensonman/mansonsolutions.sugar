@@ -1,0 +1,9 @@
+django
+django-method-override
+django_tables2
+pillow
+six
+pytz
+netaddr
+psycopg2
+openpyxl

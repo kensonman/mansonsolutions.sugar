@@ -1,0 +1,23 @@
+version: "2"
+services:
+   db:
+      image: 'postgres:9'
+      container_name: "db.${DOMAIN}"
+      volumes:
+         - ./pgdata:/var/lib/postgresql/pgdata
+      environment:
+         - PGDATA=/var/lib/postgresql/pgdata
+         - POSTGRES_USER=${DBUSER}
+         - POSTGRES_PASSWORD=${DBPASS}
+   app:
+      image: kensonman/python:3dev
+      container_name: "app.${DOMAIN}"
+      ports: 
+         - 8000:8000
+      volumes:
+         - ./src:/usr/src/app:rw
+      links:
+         - db:dbhost
+      depends_on:
+         - db 
+      command: /startup
