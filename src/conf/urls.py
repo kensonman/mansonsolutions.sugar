@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^webframe/', include('webframe.urls', namespace='webframe')),
-    url(r'^', include('sugar.urls', namespace='main')),
+    url(r'^', include('sugar.urls')),
 ]

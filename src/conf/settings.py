@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -58,7 +57,9 @@ MIDDLEWARE += [
    'django.middleware.locale.LocaleMiddleware',
 ]
 
+#URL
 ROOT_URLCONF = 'conf.urls'
+LOGIN_URL    = 'webframe/login'
 
 TEMPLATES = [
     {
@@ -151,3 +152,8 @@ LOGGING={
       'sugar': {'handlers': ['console', ], 'level':'DEBUG'},
    },
 }
+
+#Template
+TMPL_HEADER='sugar/header.html'
+
+
