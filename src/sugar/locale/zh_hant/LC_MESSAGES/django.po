@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-15 23:01+0800\n"
+"POT-Creation-Date: 2017-09-15 23:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,26 +30,26 @@ msgid "Record.owner"
 msgstr "擁有者"
 
 #: models.py:14 templates/sugar/dashboard.html:24
-#: templates/sugar/dashboard.html:25 templates/sugar/reports.html:14
-#: templates/sugar/reports.html:29 templates/sugar/reports.html:115
+#: templates/sugar/dashboard.html:25 templates/sugar/reports.html:16
+#: templates/sugar/reports.html:31 templates/sugar/reports.html:112
 msgid "Record.sugar"
 msgstr "血糖"
 
 #: models.py:15 templates/sugar/dashboard.html:28
-#: templates/sugar/dashboard.html:29 templates/sugar/reports.html:36
-#: templates/sugar/reports.html:51 templates/sugar/reports.html:116
+#: templates/sugar/dashboard.html:29 templates/sugar/reports.html:38
+#: templates/sugar/reports.html:53 templates/sugar/reports.html:113
 msgid "Record.pulse"
 msgstr "心跳率"
 
 #: models.py:16 templates/sugar/dashboard.html:32
-#: templates/sugar/dashboard.html:33 templates/sugar/reports.html:78
-#: templates/sugar/reports.html:117
+#: templates/sugar/dashboard.html:33 templates/sugar/reports.html:75
+#: templates/sugar/reports.html:114
 msgid "Record.sys"
 msgstr "血壓（上）"
 
 #: models.py:17 templates/sugar/dashboard.html:36
-#: templates/sugar/dashboard.html:37 templates/sugar/reports.html:81
-#: templates/sugar/reports.html:118
+#: templates/sugar/dashboard.html:37 templates/sugar/reports.html:78
+#: templates/sugar/reports.html:115
 msgid "Record.dia"
 msgstr "血壓（下）"
 
@@ -58,7 +58,7 @@ msgid "input-form"
 msgstr "輸入記錄"
 
 #: templates/sugar/dashboard.html:20 templates/sugar/dashboard.html:21
-#: templates/sugar/reports.html:114
+#: templates/sugar/reports.html:111
 msgid "Record.date"
 msgstr "量度日期"
 
@@ -99,18 +99,24 @@ msgstr "登出"
 msgid "login"
 msgstr "登入"
 
-#: templates/sugar/reports.html:58
+#: templates/sugar/reports.html:3 templates/sugar/reports.html:17
+#: templates/sugar/reports.html:39 templates/sugar/reports.html:61
+#, python-format
+msgid "From %(from)s to %(to)s"
+msgstr "由 %(from)s 至 %(to)s"
+
+#: templates/sugar/reports.html:60
 msgid "Record.pressure"
 msgstr "血壓"
 
-#: templates/sugar/reports.html:94
+#: templates/sugar/reports.html:90 templates/sugar/reports.html:91
 msgid "reports.form"
 msgstr "由"
 
-#: templates/sugar/reports.html:97 templates/sugar/reports.html:98
+#: templates/sugar/reports.html:94 templates/sugar/reports.html:95
 msgid "reports.to"
 msgstr "至"
 
-#: templates/sugar/reports.html:101
+#: templates/sugar/reports.html:98
 msgid "submit"
-msgstr ""
+msgstr "送出"

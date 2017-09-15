@@ -1,5 +1,7 @@
 {%extends TMPL_BASE%}{%load i18n%}{%load pydate%}
 
+{%block title%}{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}{%endblock%}
+
 {%block scripts%}{{block.super}}
 <style type="text/css">
 .chart{ min-height: 300px; margin-bottom: 20px;}
@@ -12,7 +14,7 @@ $(document).ready(function(){
    //SugarChart
    Highcharts.chart('sugarChart', {
       title: { text: '{%trans 'Record.sugar'%}' },
-      subtitle: { text: '{{from|pydate:FMT_DATE}} ~ {{to|pydate:FMT_DATE}}' },
+      subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
          categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
       },
@@ -34,7 +36,7 @@ $(document).ready(function(){
    //PulseChart
    Highcharts.chart('pulseChart', {
       title: { text: '{%trans 'Record.pulse'%}' },
-      subtitle: { text: '{{from|pydate:FMT_DATE}} ~ {{to|pydate:FMT_DATE}}' },
+      subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
          categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
       },
@@ -56,7 +58,7 @@ $(document).ready(function(){
    //PressureChart
    Highcharts.chart('pressureChart', {
       title: { text: '{%trans 'Record.pressure'%}' },
-      subtitle: { text: '{{from|pydate:FMT_DATE}} ~ {{to|pydate:FMT_DATE}}' },
+      subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
          categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
       },
@@ -68,11 +70,6 @@ $(document).ready(function(){
             dataLabels: { enabled: true },
             enableMouseTracking: false
          }
-      },
-      legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'middle'
       },
       series: [{
           name: '{%trans 'Record.sys'%}',
