@@ -1,0 +1,128 @@
+{%extends TMPL_BASE%}{%load i18n%}{%load pydate%}
+
+{%block scripts%}{{block.super}}
+<style type="text/css">
+.chart{ min-height: 300px; margin-bottom: 20px;}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@5.0.14/highcharts.js"></script>
+<script type="text/javascript"><!--
+$(document).ready(function(){
+   $('input[type=date]').datetimepicker({format: '{{FMT_JSDATE}}'});
+
+   //SugarChart
+   Highcharts.chart('sugarChart', {
+      title: { text: '{%trans 'Record.sugar'%}' },
+      subtitle: { text: '{{from|pydate:FMT_DATE}} ~ {{to|pydate:FMT_DATE}}' },
+      xAxis: {
+         categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+      },
+      yAxis: {
+         title: { text: 'mmol/L'}, 
+      },
+      plotOptions: {
+         line: {
+            dataLabels: { enabled: true },
+            enableMouseTracking: false
+         }
+      },
+      series: [{
+          name: '{%trans 'Record.sugar'%}',
+          data: [{%for r in target%}{{r.sugar}},{%endfor%}]
+      }]
+   });
+
+   //PulseChart
+   Highcharts.chart('pulseChart', {
+      title: { text: '{%trans 'Record.pulse'%}' },
+      subtitle: { text: '{{from|pydate:FMT_DATE}} ~ {{to|pydate:FMT_DATE}}' },
+      xAxis: {
+         categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+      },
+      yAxis: {
+         title: { text: 'pul./min.'}, 
+      },
+      plotOptions: {
+         line: {
+            dataLabels: { enabled: true },
+            enableMouseTracking: false
+         }
+      },
+      series: [{
+          name: '{%trans 'Record.pulse'%}',
+          data: [{%for r in target%}{{r.pulse}},{%endfor%}]
+      }]
+   });
+
+   //PressureChart
+   Highcharts.chart('pressureChart', {
+      title: { text: '{%trans 'Record.pressure'%}' },
+      subtitle: { text: '{{from|pydate:FMT_DATE}} ~ {{to|pydate:FMT_DATE}}' },
+      xAxis: {
+         categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+      },
+      yAxis: {
+         title: { text: 'mmHg'}, 
+      },
+      plotOptions: {
+         line: {
+            dataLabels: { enabled: true },
+            enableMouseTracking: false
+         }
+      },
+      legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle'
+      },
+      series: [{
+          name: '{%trans 'Record.sys'%}',
+          data: [{%for r in target%}{{r.sys}},{%endfor%}]
+      },{
+          name: '{%trans 'Record.dia'%}',
+          data: [{%for r in target%}{{r.dia}},{%endfor%}]
+      }]
+   });
+});
+//--></script>
+{%endblock%}
+{%block content%}<div class="jumbotron">
+   <div class="row">
+      <form method="GET" class="col-xs-12 col-sm-10 col-sm-offset-1">
+         <div class="row">
+            <div class="col-xs-12 col-sm-6 field"><div class="input-group">
+               <span class="input-group-addon"><i class="fa fa-calendar"></i> <span class="hidden-xs">{%trans 'reports.form'%}</span></span>
+               <input type="date" name="from" class="form-control" value="{{from|pydate:FMT_DATE}}" placeholder="{%trans 'reports.form'%}"/>
+            </div></div>
+            <div class="col-xs-12 col-sm-6 field"><div class="input-group">
+               <span class="input-group-addon"><i class="fa fa-calendar"></i> <span class="hidden-xs">{%trans 'reports.to'%}</span></span>
+               <input type="date" name="to" class="form-control" value="{{to|pydate:FMT_DATE}}" placeholder="{%trans 'reports.to'%}"/>
+            </div></div>
+            <div class="pnl pnl-btns">
+               <button type="submit" class="btn btn-success">{%trans 'submit'%}</button>
+            </div>
+         </div>
+      </form>
+   </div>
+   <div class="row">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1"><div class="chart" id="sugarChart"></div></div>
+      <div class="col-xs-12 col-sm-5"><div class="chart" id="pulseChart"></div></div>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1"><div class="chart" id="pressureChart"></div></div>
+   </div>
+   {%if target%}
+      <table class="table">
+         <tr>
+            <th>{%trans 'Record.date'%}</th>
+            <th>{%trans 'Record.sugar'%}</th>
+            <th>{%trans 'Record.pulse'%}</th>
+            <th>{%trans 'Record.sys'%}</th>
+            <th>{%trans 'Record.dia'%}</th>
+         </tr>{%for r in target%}<tr class="row-data">
+            <td>{{r.lmd|pydate:FMT_DATETIME}}</td>
+            <td>{{r.sugar}}</td>
+            <td>{{r.pulse}}</td>
+            <td>{{r.sys}}</td>
+            <td>{{r.dia}}</td>
+         </tr>{%endfor%}
+      </table>
+   {%endif%}
+</div>{%endblock%}

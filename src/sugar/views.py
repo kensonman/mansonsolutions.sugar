@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404 as getObj
-from webframe.functions import getDateTime
+from webframe.functions import getDateTime, getDate
 from .models import Record
 
 import logging
@@ -17,8 +17,11 @@ def index(req):
    return render(req, 'webframe/empty.html')
 
 @login_required
-def dashboard(req, username):
-   if not (req.user.is_superuser or req.user.username==username):  return HttpResponseForbidden('Request Foridden')
+def dashboard(req, username=None):
+   if username:
+      if not (req.user.is_superuser or req.user.username==username):  return HttpResponseForbidden('Request Foridden')
+   else:
+      username=req.user.username
 
    if req.method=='POST':
      r=Record()
@@ -29,14 +32,22 @@ def dashboard(req, username):
      r.sys=int(req.POST.get('sys', '0'))
      r.dia=int(req.POST.get('dia', '0'))
      r.save()
-     return redirect('reports', username=username)
+     return redirect('user-reports', username=username) if username else redirect('reports')
 
    return render(req, 'sugar/dashboard.html', {})
 
 @login_required
-def reports(req, username):
-   params=dict()
-   params['to']=datetime.now()
-   params['from']=params['to']+timedelta(days=30)
+def reports(req, username=None):
+   if username:
+      if not (req.user.is_superuser or req.user.username==username):  return HttpResponseForbidden('Request Foridden')
+   else:
+      username=req.user.username
 
-   return render(req, 'webframe/empty.html', params)
+   params=dict()
+   params['to']=getDate(req.GET.get('to', None), datetime.now())
+   params['from']=getDate(req.GET.get('from', None), params['to']-timedelta(days=30))
+   params['target']=Record.objects.filter(lmd__range=(params['from'], params['to'])).order_by('lmd')
+   logger.debug('Query: %s'%params['target'].query)
+   logger.debug('Rst: %s'%params['target'])
+
+   return render(req, 'sugar/reports.html', params)
