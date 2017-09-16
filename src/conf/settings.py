@@ -25,6 +25,7 @@ SECRET_KEY = '(&(&mcuz4ks_7+)eluza_n3%)_8r$o@vol+e5$o@f3cnyk*qfs'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'sugar.mansonsolutions.hk',]
+SECURE_SSL_REDIRECT=True
 
 # Application definition
 
