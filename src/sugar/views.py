@@ -47,7 +47,5 @@ def reports(req, username=None):
    params['to']=getDate(req.GET.get('to', None), datetime.now())
    params['from']=getDate(req.GET.get('from', None), params['to']-timedelta(days=30))
    params['target']=Record.objects.filter(date__range=(params['from'], params['to'])).order_by('date')
-   logger.debug('Query: %s'%params['target'].query)
-   logger.debug('Rst: %s'%params['target'])
 
    return render(req, 'sugar/reports.html', params)

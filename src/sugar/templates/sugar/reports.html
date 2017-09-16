@@ -16,7 +16,7 @@ $(document).ready(function(){
       title: { text: '{%trans 'Record.sugar'%}' },
       subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
-         categories: [{%for r in target%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+         categories: [{%for r in target%}{%if r.sugar > 0%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endif%}{%endfor%}]
       },
       yAxis: {
          title: { text: 'mmol/L'}, 
@@ -29,7 +29,7 @@ $(document).ready(function(){
       },
       series: [{
           name: '{%trans 'Record.sugar'%}',
-          data: [{%for r in target%}{{r.sugar}},{%endfor%}]
+          data: [{%for r in target%}{%if r.sugar > 0%}{{r.sugar}}, {%endif%}{%endfor%}]
       }]
    });
 
@@ -38,7 +38,7 @@ $(document).ready(function(){
       title: { text: '{%trans 'Record.pulse'%}' },
       subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
-         categories: [{%for r in target%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+         categories: [{%for r in target%}{%if r.pulse > 0%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endif%}{%endfor%}]
       },
       yAxis: {
          title: { text: 'pul./min.'}, 
@@ -51,7 +51,7 @@ $(document).ready(function(){
       },
       series: [{
           name: '{%trans 'Record.pulse'%}',
-          data: [{%for r in target%}{{r.pulse}},{%endfor%}]
+          data: [{%for r in target%}{%if r.pulse > 0%}{{r.pulse}}, {%endif%}{%endfor%}]
       }]
    });
 
@@ -60,7 +60,7 @@ $(document).ready(function(){
       title: { text: '{%trans 'Record.pressure'%}' },
       subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
-         categories: [{%for r in target%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+         categories: [{%for r in target%}{%if r.sys > 0 or r.dia > 0%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endif%}{%endfor%}]
       },
       yAxis: {
          title: { text: 'mmHg'}, 
@@ -73,10 +73,10 @@ $(document).ready(function(){
       },
       series: [{
           name: '{%trans 'Record.sys'%}',
-          data: [{%for r in target%}{{r.sys}},{%endfor%}]
+          data: [{%for r in target%}{%if r.sys > 0 or r.dia > 0%}{{r.sys}}, {%endif%}{%endfor%}]
       },{
           name: '{%trans 'Record.dia'%}',
-          data: [{%for r in target%}{{r.dia}},{%endfor%}]
+          data: [{%for r in target%}{%if r.sys > 0 or r.dia > 0%}{{r.dia}}, {%endif%}{%endfor%}]
       }]
    });
 });
