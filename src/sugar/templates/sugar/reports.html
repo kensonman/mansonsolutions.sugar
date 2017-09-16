@@ -16,7 +16,7 @@ $(document).ready(function(){
       title: { text: '{%trans 'Record.sugar'%}' },
       subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
-         categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+         categories: [{%for r in target%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endfor%}]
       },
       yAxis: {
          title: { text: 'mmol/L'}, 
@@ -38,7 +38,7 @@ $(document).ready(function(){
       title: { text: '{%trans 'Record.pulse'%}' },
       subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
-         categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+         categories: [{%for r in target%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endfor%}]
       },
       yAxis: {
          title: { text: 'pul./min.'}, 
@@ -60,7 +60,7 @@ $(document).ready(function(){
       title: { text: '{%trans 'Record.pressure'%}' },
       subtitle: { text: '{%blocktrans with from=from|pydate:FMT_DATE to=to|pydate:FMT_DATE%}From {{from}} to {{to}}{%endblocktrans%}' },
       xAxis: {
-         categories: [{%for r in target%}'{{r.lmd|pydate:'%d/%m %H:%M'}}', {%endfor%}]
+         categories: [{%for r in target%}'{{r.date|pydate:'%d/%m %H:%M'}}', {%endfor%}]
       },
       yAxis: {
          title: { text: 'mmHg'}, 

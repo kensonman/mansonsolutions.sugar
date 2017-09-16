@@ -11,6 +11,7 @@ class Record(ValueObject):
       verbose_name_plural     = _('Records')
 
    owner                      = models.ForeignKey(get_user_model(), verbose_name=_('Record.owner'))
+   date                       = models.DateTimeField(verbose_name=_('Record.date'))
    sugar                      = models.FloatField(default=0,verbose_name=_('Record.sugar'))
    pulse                      = models.IntegerField(default=0,verbose_name=_('Record.pulse'))
    sys                        = models.IntegerField(default=0,verbose_name=_('Record.sys'))
