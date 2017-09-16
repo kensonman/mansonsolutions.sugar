@@ -5,6 +5,7 @@
 {%block scripts%}{{block.super}}
 <style type="text/css">
 .chart{ min-height: 300px; margin-bottom: 20px;}
+#pnlDetail div{background-color: #fff;}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@5.0.14/highcharts.js"></script>
 <script type="text/javascript"><!--
@@ -105,8 +106,8 @@ $(document).ready(function(){
       <div class="col-xs-12 col-sm-5"><div class="chart" id="pulseChart"></div></div>
       <div class="col-xs-12 col-sm-10 col-sm-offset-1"><div class="chart" id="pressureChart"></div></div>
    </div>
-   {%if target%}
-      <table class="table">
+   {%if target%}<div class="row" id="pnlDetail">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1"><table class="table">
          <tr>
             <th>{%trans 'Record.date'%}</th>
             <th>{%trans 'Record.sugar'%}</th>
@@ -120,6 +121,9 @@ $(document).ready(function(){
             <td>{{r.sys}}</td>
             <td>{{r.dia}}</td>
          </tr>{%endfor%}
-      </table>
-   {%endif%}
+      </table></div>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1"><div class="pnl pnl-btns">
+         <a class="btn btn-success" href=""><i class="fa fa-download"></i> {%trans 'download'%}</a>
+      </div></div>
+   </div>{%endif%}
 </div>{%endblock%}

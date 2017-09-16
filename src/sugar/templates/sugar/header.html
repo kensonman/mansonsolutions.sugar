@@ -15,8 +15,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             {%if user.is_authenticated%}
-            <li><a href="{%url 'dashboard'%}">{%trans 'menu.dashboard'%}</a></li>
-            <li><a href="{%url 'reports'%}">{%trans 'menu.reports'%}</a></li>
+            <li><a href="{%url 'dashboard-user' username=user.username%}">{%trans 'menu.dashboard'%}</a></li>
+            <li><a href="{%url 'reports-user' username=user.username%}">{%trans 'menu.reports'%}</a></li>
             {%endif%}
         </ul>
         <ul class="nav navbar-nav navbar-right">

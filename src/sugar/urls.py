@@ -5,10 +5,11 @@ from . import views
 
 urlpatterns = [
    url(r'^$', views.dashboard, name='index'),
-   url(r'^$', views.dashboard, name='dashboard'),
+
    url(r'^reports/?$', views.reports, name='reports'),
+   url(r'^reports/(?P<username>[^/]+)/?$', views.reports, name='reports-user'),
+   url(r'^reports/(?P<username>[^/]+)/downloads/?$', views.downloads, name='downloads'),
 
-   url(r'^(?P<username>[^/]+)/?$', views.dashboard, name='user-dashboard'),
-   url(r'^(?P<username>[^/]+)/reports/?$', views.reports, name='user-reports'),
+   url(r'^dashboard/?$', views.dashboard, name='dashboard'),
+   url(r'^dashboard/(?P<username>[^/]+)/?$', views.dashboard, name='dashboard-user'),
 ]
-
