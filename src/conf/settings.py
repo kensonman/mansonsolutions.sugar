@@ -157,4 +157,5 @@ LOGGING={
 #Template
 TMPL_HEADER='sugar/header.html'
 
-
+#Version
+VERSION='v0.1.0'
