@@ -26,7 +26,7 @@ def dashboard(req, username=None):
    if req.method=='POST':
      r=Record()
      r.owner=getObj(get_user_model(), username=username)
-     r.lmd=getDateTime(req.POST.get('date'))
+     r.date=getDateTime(req.POST.get('date'))
      r.sugar=float(req.POST.get('sugar', '0'))
      r.pulse=int(req.POST.get('pulse', '0'))
      r.sys=int(req.POST.get('sys', '0'))
@@ -46,7 +46,7 @@ def reports(req, username=None):
    params=dict()
    params['to']=getDate(req.GET.get('to', None), datetime.now())
    params['from']=getDate(req.GET.get('from', None), params['to']-timedelta(days=30))
-   params['target']=Record.objects.filter(lmd__range=(params['from'], params['to'])).order_by('lmd')
+   params['target']=Record.objects.filter(date__range=(params['from'], params['to'])).order_by('date')
    logger.debug('Query: %s'%params['target'].query)
    logger.debug('Rst: %s'%params['target'])
 
