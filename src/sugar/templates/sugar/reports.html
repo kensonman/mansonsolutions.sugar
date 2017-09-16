@@ -123,7 +123,7 @@ $(document).ready(function(){
          </tr>{%endfor%}
       </table></div>
       <div class="col-xs-12 col-sm-10 col-sm-offset-1"><div class="pnl pnl-btns">
-         <a class="btn btn-success" href=""><i class="fa fa-download"></i> {%trans 'download'%}</a>
+         <a class="btn btn-success" href="{%url 'downloads' username=user.username%}?from={{from|pydate:FMT_DATE}}&amp;to={{to|pydate:FMT_DATE}}"><i class="fa fa-download"></i> {%trans 'download'%}</a>
       </div></div>
    </div>{%endif%}
 </div>{%endblock%}
