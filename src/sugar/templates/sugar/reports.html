@@ -114,8 +114,8 @@ $(document).ready(function(){
             <th>{%trans 'Record.pulse'%}</th>
             <th>{%trans 'Record.sys'%}</th>
             <th>{%trans 'Record.dia'%}</th>
-         </tr>{%for r in target%}<tr class="row-data">
-            <td>{{r.lmd|pydate:FMT_DATETIME}}</td>
+         </tr>{%for r in target.reverse%}<tr class="row-data">
+            <td>{{r.date|pydate:FMT_DATETIME}}</td>
             <td>{{r.sugar}}</td>
             <td>{{r.pulse}}</td>
             <td>{{r.sys}}</td>
