@@ -36,9 +36,10 @@ def dashboard(req, username=None):
    user=_getUser(req, username)
 
    if req.method=='POST':
+      logger.info('Saving record to user<%s>:%s...'%(user.id, user.username))
       with transaction.atomic():
          r=Record()
-         r.owner=getObj(get_user_model(), username=username)
+         r.owner=user
          r.date=getDateTime(req.POST.get('date'))
          r.sugar=req.POST.get('sugar', '0')
          r.sugar=float(r.sugar) if r.sugar else 0

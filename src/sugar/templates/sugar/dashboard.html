@@ -14,7 +14,7 @@ $(document).ready(function(){
    <div class="panel panel-default col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
       <div class="panel-body">
          <h1>Dashboard</h1>
-         <form method="POST">
+         <form method="POST" action="{%url 'dashboard'%}">
             {%csrf_token%}
             <div class="input-group field">
                <span class="input-group-addon"><i class="fa fa-calendar"></i> <span class="hidden-xs">{%trans 'Record.date'%}</span></span>
